@@ -1,28 +1,22 @@
 <template>
-  <div class="navbar bg-base-100 px-[130px]">
-    <div class="flex-1">
-      <a class="btn btn-ghost text-xl">seitzvalue</a>
-    </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        <li>
-          <details>
-            <summary>产品中心</summary>
-            <ul class="w-32 p-2 bg-base-100 rounded-t-none">
-              <li><a>氢气电磁阀</a></li>
-              <li><a>单向阀</a></li>
-              <li><a>定制化方案</a></li>
-              <li><a>更多行业</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a>西兹动态</a></li>
-        <li><a>关于西兹</a></li>
-        <li><a>联系我们</a></li>
-      </ul>
-    </div>
-  </div>
-</template>
+  <header class="fixed left-0 right-0 top-0 bg-transparent z-[997] text-white">
+    <div class="w-full flex items-center px-[130px] font-semibold text-[16px] bg-transparent">
+      <div class="w-[200px]">
+        <NuxtLink href="/">
+          <img class="w-full" src="https://seitzhydrogen.ch/theme/img/logo_seitz_pos.svg">
+        </NuxtLink>
+      </div>
+      <div class="flex-1">
+        <ul class="flex items-center justify-end h-[74px]">
+          <li class="mr-[50px] cursor-pointer hover:text-[#7ae3a6]">
 
-<script setup lang="ts">
-</script>
+            <NuxtLink href="/product/more">产品中心</NuxtLink>
+          </li>
+          <li class="mr-[50px] cursor-pointer hover:text-[#7ae3a6]">西兹动态</li>
+          <li class="mr-[50px] cursor-pointer hover:text-[#7ae3a6]">关于西兹</li>
+          <li class="cursor-pointer hover:text-[#7ae3a6]">联系我们</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</template>
