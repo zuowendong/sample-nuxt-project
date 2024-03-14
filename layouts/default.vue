@@ -9,31 +9,27 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from "vue";
 
-const mainDom = ref<any>(null)
-const bannerStyle = ref({})
+const mainDom = ref<any>(null);
+const bannerStyle = ref({});
 function handleScroll() {
-  let scrollTop = mainDom.value?.scrollTop
+  let scrollTop = mainDom.value?.scrollTop;
   if (scrollTop > 180) {
     bannerStyle.value = {
-      backgroundColor: '#fff',
-      color: '#333'
-    }
+      backgroundColor: "#fff",
+      color: "#3d99d4",
+    };
   } else {
     bannerStyle.value = {
-      backgroundColor: 'transparent'
-    }
+      backgroundColor: "transparent",
+    };
   }
 }
 
-
 onMounted(() => {
-  document.addEventListener('scroll', handleScroll, true)
-})
-
-
-
+  document.addEventListener("scroll", handleScroll, true);
+});
 </script>
 
 <style scoped>

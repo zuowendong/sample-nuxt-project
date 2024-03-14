@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
-    <div class="relative mask">
-      <img src="https://ik.imagekit.io/seitz/media/seitz-h2_keyvisual.jpg?tr=ar-16-9,w-3000,fo-center" alt="home page">
+    <div class="relative mask min-h-screen">
+      <img src="/public/main.png" alt="home page">
     </div>
     <div>
       <div>other content</div>
