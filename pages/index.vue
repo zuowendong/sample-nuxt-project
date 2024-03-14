@@ -1,9 +1,11 @@
 <template>
   <div class="w-full">
     <div class="relative mask min-h-screen">
-      <img src="/public/main.png" alt="home page">
+      <img src="/public/main.png" alt="home page" />
     </div>
     <div>
+      <div>msg from store: {{ homeMsg }}</div>
+      <div>msg from api: {{ apiMsg }}</div>
       <div>other content</div>
       <div>other content</div>
       <div>other content</div>
@@ -28,13 +30,24 @@
         </div>
       </div>
     </div> -->
-
   </div>
 </template>
 
 <script setup lang="ts">
-import { useHomeStore } from '~/store/home';
-const { homeMsg } = useHomeStore()
+import { ref } from "vue";
+import { useHomeStore } from "~/store/home";
+import { fetchHomeMsg } from "~/api/home";
+
+const { homeMsg } = useHomeStore();
+
+const apiMsg = ref("");
+async function getAPIMsg() {
+  apiMsg.value = await fetchHomeMsg();
+}
+
+onMounted(async () => {
+  await getAPIMsg();
+});
 </script>
 
 <style scoped>
@@ -56,7 +69,7 @@ const { homeMsg } = useHomeStore()
   position: absolute;
   top: 0;
   left: 0;
-  content: '';
+  content: "";
   background-color: #00263e;
   opacity: 0.7;
   z-index: 1;
