@@ -1,6 +1,7 @@
 <template>
   <div ref="mainDom" class="main">
-    <Navbar :style="bannerStyle"></Navbar>
+    <!-- <Navbar :style="bannerStyle"></Navbar> -->
+    <ReactiveNavbar></ReactiveNavbar>
     <div class="content">
       <slot></slot>
     </div>
