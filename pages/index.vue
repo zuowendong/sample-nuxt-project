@@ -5,21 +5,15 @@
     </div>
     <div>
       <div>msg from store: {{ homeMsg }}</div>
-      <div>msg from api: {{ apiMsg }}</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
-      <div>other content</div>
+      <div>
+        <h1>msg from api:</h1>
+
+        <div v-for="item in apiMsgs" :index="item.xid">
+          <NuxtLink :href="`/message/${item.xid}`">
+            <span>{{ item.name }}</span>
+          </NuxtLink>
+        </div>
+      </div>
     </div>
 
     <!-- <div class="md:min-h-screen flex items-center relative py-[125px] overflow-hidden text-white bg-[#00263e]">
@@ -36,13 +30,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useHomeStore } from "~/store/home";
-import { fetchHomeMsg } from "~/api/home";
+import { fetchHomeMsg, type HomeMsg } from "~/api/home";
 
 const { homeMsg } = useHomeStore();
 
-const apiMsg = ref("");
+const apiMsgs = ref<HomeMsg[]>([]);
 async function getAPIMsg() {
-  apiMsg.value = await fetchHomeMsg();
+  apiMsgs.value = await fetchHomeMsg();
 }
 
 onMounted(async () => {
