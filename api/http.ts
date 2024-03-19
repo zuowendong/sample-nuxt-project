@@ -1,10 +1,10 @@
 import type { AxiosInstance, AxiosResponse } from "axios";
 import axios from "axios";
 import { checkHaveToken, getToken } from "~/utils/token";
-// import { isProd } from "~/utils/env";
+import { isProd } from "~/utils/env";
 
 export const http: AxiosInstance = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: isProd() ? "http://localhost:3002" : "http://localhost:3001",
   timeout: 10000,
   headers: { "Content-Type": "application/json" },
 });

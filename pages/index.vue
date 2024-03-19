@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="relative mask min-h-screen">
-      <img src="/public/main.png" alt="home page" />
+      <img src="/main.png" alt="home page" />
     </div>
     <div>
       <div>msg from store: {{ homeMsg }}</div>
