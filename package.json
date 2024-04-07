@@ -3,30 +3,22 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nuxt dev",
-    "build": "cross-env NODE_ENV=production nuxt build",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "axios": "^1.6.7",
-    "pinia": "^2.1.7"
+    "dev:client": "pnpm -F client dev",
+    "dev:server": "pnpm -F server start:dev",
+    "build:client": "pnpm -F client generate"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "cross-env": "^7.0.3",
-    "daisyui": "^4.7.3",
-    "nuxt": "^3.10.3",
     "picocolors": "^1.0.0",
     "simple-git-hooks": "^2.10.0",
-    "tailwindcss": "^3.4.1",
-    "tsx": "^4.7.1",
     "typescript": "^5.4.2",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "tsx": "^4.7.1"
   },
   "simple-git-hooks": {
     "commit-msg": "npx tsx ./scripts/verify-commit.ts"
-  }
+  },
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "packageManager": "pnpm@8.15.5"
 }

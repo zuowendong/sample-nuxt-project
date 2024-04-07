@@ -1,9 +1,11 @@
 <template>
   <div class="w-full">
-    <div class="relative mask min-h-screen">
+    <!-- <div class="relative mask min-h-screen">
       <img src="/main.png" alt="home page" />
-    </div>
+    </div> -->
     <div>
+      <div>home sse:</div>
+
       <div>msg from store: {{ homeMsg }}</div>
       <div>
         <h1>msg from api:</h1>
@@ -39,8 +41,17 @@ async function getAPIMsg() {
   apiMsgs.value = await fetchHomeMsg();
 }
 
+function getHomeSse() {
+  console.log(11111111);
+  const eventSource = new EventSource("http://localhost:3001/home/sse");
+  eventSource.onmessage = ({ data }) => {
+    console.log("message =>>>", data);
+  };
+}
+
 onMounted(async () => {
   await getAPIMsg();
+  getHomeSse();
 });
 </script>
 
