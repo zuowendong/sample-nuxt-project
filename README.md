@@ -1,5 +1,19 @@
-# How to build Nuxt 3 project
+# How to build Nuxt 3 project and Nest project
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a sample project that I used for my time study.
+
+continuous updating...
 
 ## Setup
+
+- Start the front-end project
+
+  ```shell
+  pnpm dev:client
+  ```
+
+- Start the back-end project
+
+  ```shell
+  pnpm dev:server
+  ```
