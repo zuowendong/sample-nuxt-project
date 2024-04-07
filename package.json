@@ -5,7 +5,7 @@
   "scripts": {
     "dev:client": "pnpm -F client dev",
     "dev:server": "pnpm -F server start:dev",
-    "build:client": "pnpm -F client generate"
+    "build": "pnpm -F client build"
   },
   "devDependencies": {
     "picocolors": "^1.0.0",
