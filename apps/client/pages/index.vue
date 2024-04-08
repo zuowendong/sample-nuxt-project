@@ -30,29 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useHomeStore } from "~/store/home";
-import { fetchHomeMsg, type HomeMsg } from "~/api/home";
+import { useHomeMessage } from "~/composables/home";
+import { useSocket } from "~/composables/socket";
 
-const { homeMsg } = useHomeStore();
-
-const apiMsgs = ref<HomeMsg[]>([]);
-async function getAPIMsg() {
-  apiMsgs.value = await fetchHomeMsg();
-}
-
-function getHomeSse() {
-  console.log(11111111);
-  const eventSource = new EventSource("http://localhost:3001/home/sse");
-  eventSource.onmessage = ({ data }) => {
-    console.log("message =>>>", data);
-  };
-}
-
-onMounted(async () => {
-  await getAPIMsg();
-  getHomeSse();
-});
+const { homeMsg, apiMsgs } = useHomeMessage();
+useSocket();
 </script>
 
 <style scoped>

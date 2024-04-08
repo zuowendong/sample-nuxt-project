@@ -9,5 +9,6 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/x-icon", href: "/logo.png" }],
     },
   },
-  buildDir: "../../dist",
+
+  ssr: false,
 });
