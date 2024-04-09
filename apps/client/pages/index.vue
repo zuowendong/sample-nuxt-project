@@ -4,7 +4,7 @@
       <img src="/main.png" alt="home page" />
     </div> -->
     <div>
-      <div>home sse:</div>
+      <div>online numbers: {{ onlineNumber }}</div>
 
       <div>msg from store: {{ homeMsg }}</div>
       <div>
@@ -32,9 +32,12 @@
 <script setup lang="ts">
 import { useHomeMessage } from "~/composables/home";
 import { useSocket } from "~/composables/socket";
+import { useWs } from "~/composables/ws";
 
 const { homeMsg, apiMsgs } = useHomeMessage();
-useSocket();
+// useSocket();
+
+const { onlineNumber } = useWs();
 </script>
 
 <style scoped>
