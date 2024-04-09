@@ -4,7 +4,7 @@
       <img src="/main.png" alt="home page" />
     </div> -->
     <div>
-      <div>online numbers: {{ onlineNumber }}</div>
+      <!-- <div>online numbers: {{ onlineNumber }}</div> -->
 
       <div>msg from store: {{ homeMsg }}</div>
       <div>
@@ -26,6 +26,10 @@
         </div>
       </div>
     </div> -->
+
+    <button class="btn">
+      <NuxtLink href="/product/more">chat room</NuxtLink>
+    </button>
   </div>
 </template>
 
@@ -35,9 +39,9 @@ import { useSocket } from "~/composables/socket";
 import { useWs } from "~/composables/ws";
 
 const { homeMsg, apiMsgs } = useHomeMessage();
-// useSocket();
+// const { createOrJoinRoom, leaveRoom, allRoomUsers } = useSocket();
 
-const { onlineNumber } = useWs();
+// const { onlineNumber } = useWs();
 </script>
 
 <style scoped>
