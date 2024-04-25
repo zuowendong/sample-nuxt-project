@@ -1,15 +1,9 @@
 <template>
   <div class="w-full">
-    <!-- <div class="relative mask min-h-screen">
-      <img src="/main.png" alt="home page" />
-    </div> -->
     <div>
-      <!-- <div>online numbers: {{ onlineNumber }}</div> -->
-
       <div>msg from store: {{ homeMsg }}</div>
       <div>
         <h1>msg from api:</h1>
-
         <div v-for="item in apiMsgs" :index="item.xid">
           <NuxtLink :href="`/message/${item.xid}`">
             <span>{{ item.name }}</span>
@@ -26,22 +20,13 @@
         </div>
       </div>
     </div> -->
-
-    <button class="btn">
-      <NuxtLink href="/product/more">chat room</NuxtLink>
-    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useHomeMessage } from "~/composables/home";
-import { useSocket } from "~/composables/socket";
-import { useWs } from "~/composables/ws";
 
 const { homeMsg, apiMsgs } = useHomeMessage();
-// const { createOrJoinRoom, leaveRoom, allRoomUsers } = useSocket();
-
-// const { onlineNumber } = useWs();
 </script>
 
 <style scoped>
