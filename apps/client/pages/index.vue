@@ -1,5 +1,7 @@
 <template>
   <div class="w-full">
+    <p>当前为：{{ envInfo }}</p>
+
     <div>
       <div>msg from store: {{ homeMsg }}</div>
       <div>
@@ -24,9 +26,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useHomeMessage } from "~/composables/home";
+import { isProd } from "~/utils/env";
 
 const { homeMsg, apiMsgs } = useHomeMessage();
+
+const envInfo = computed(() => (isProd() ? "生成环境" : "开发环境"));
 </script>
 
 <style scoped>
