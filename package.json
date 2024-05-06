@@ -4,8 +4,10 @@
   "type": "module",
   "scripts": {
     "dev:client": "pnpm -F client dev",
-    "dev:server": "pnpm -F server start:dev",
-    "build": "pnpm -F client build"
+    "dev:serve": "pnpm -F server start:dev",
+    "build": "pnpm -F client build",
+    "docker:start": "docker-compose up -d",
+    "docker:delete": "docker-compose down"
   },
   "devDependencies": {
     "picocolors": "^1.0.0",

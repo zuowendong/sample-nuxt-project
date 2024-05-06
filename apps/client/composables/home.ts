@@ -1,8 +1,15 @@
 import { ref } from "vue";
 import { useHomeStore } from "~/store/home";
-import { fetchHomeMsg, type HomeMsg } from "~/api/home";
+import {
+  fetchHomeMsg,
+  type HomeMsg,
+  fetchAddOnline,
+  fetchOnlineUsers,
+} from "~/api/home";
 
 export function useHomeMessage() {
+  const onlineUsersCount = ref(0);
+
   const { homeMsg } = useHomeStore();
 
   const apiMsgs = ref<HomeMsg[]>([]);
@@ -17,13 +24,27 @@ export function useHomeMessage() {
     };
   }
 
+  async function addOnline() {
+    const mockUserId = `${Math.random()}`;
+    await fetchAddOnline(mockUserId);
+  }
+
+  async function getOnlineUsers() {
+    const { count } = await fetchOnlineUsers();
+    onlineUsersCount.value = count;
+  }
+
   onMounted(async () => {
     await getAPIMsg();
     // getHomeSse();
+
+    await getOnlineUsers();
   });
 
   return {
     homeMsg,
     apiMsgs,
+    addOnline,
+    onlineUsersCount,
   };
 }
