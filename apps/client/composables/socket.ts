@@ -35,6 +35,7 @@ export function useOnline() {
   const leaveGame = () => socket.close();
 
   return {
+    userId,
     onlineUserCount,
     watchOnlineUsers,
     leaveGame,

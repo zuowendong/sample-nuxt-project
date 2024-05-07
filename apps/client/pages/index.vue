@@ -5,6 +5,8 @@
     <div>
       <div class="divider">use websocket</div>
       <div>在线人数：{{ onlineUserCount }}</div>
+      <span>userId: {{ userId }}</span>
+      <button class="btn btn-ghost" @click="deleteOnline(userId)">下线</button>
 
       <div class="divider">use sse</div>
       <button class="btn" @click="addOnline">添加在线人数</button>
@@ -53,7 +55,7 @@ const {
 
 const envInfo = computed(() => (isProd() ? "生成环境" : "开发环境"));
 
-const { onlineUserCount, watchOnlineUsers } = useOnline();
+const { onlineUserCount, watchOnlineUsers, userId } = useOnline();
 onMounted(() => {
   watchOnlineUsers();
 });
