@@ -7,13 +7,15 @@
     "dev:serve": "pnpm -F server start:dev",
     "build": "pnpm -F client build",
     "docker:start": "docker-compose up -d",
-    "docker:delete": "docker-compose down"
+    "docker:delete": "docker-compose down",
+    "docker:down": "docker-compose down --volumes"
   },
   "devDependencies": {
+    "@types/node": "^20.3.1",
     "picocolors": "^1.0.0",
     "simple-git-hooks": "^2.10.0",
-    "typescript": "^5.4.2",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
   },
   "simple-git-hooks": {
     "commit-msg": "npx tsx ./scripts/verify-commit.ts"

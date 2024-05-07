@@ -3,6 +3,10 @@
     <p>当前为：{{ envInfo }}</p>
 
     <div>
+      <div class="divider">use websocket</div>
+      <div>在线人数：{{ onlineUserCount }}</div>
+
+      <div class="divider">use sse</div>
       <button class="btn" @click="addOnline">添加在线人数</button>
       <span>在线人数：{{ onlineUsersCount }}</span>
 
@@ -10,15 +14,14 @@
         <span>userId: {{ item }}</span>
         <button class="btn btn-ghost" @click="deleteOnline(item)">下线</button>
       </div>
-
+      <div class="divider">use store</div>
       <div>msg from store: {{ homeMsg }}</div>
-      <div>
-        <h1>msg from api:</h1>
-        <div v-for="item in apiMsgs" :index="item.xid">
-          <NuxtLink :href="`/message/${item.xid}`">
-            <span>{{ item.name }}</span>
-          </NuxtLink>
-        </div>
+      <div class="divider">use nest api</div>
+
+      <div v-for="item in apiMsgs" :index="item.xid">
+        <NuxtLink :href="`/message/${item.xid}`">
+          <span>{{ item.name }}</span>
+        </NuxtLink>
       </div>
     </div>
 
@@ -37,6 +40,7 @@
 import { computed } from "vue";
 import { useHomeMessage } from "~/composables/home";
 import { isProd } from "~/utils/env";
+import { useOnline } from "~/composables/socket";
 
 const {
   homeMsg,
@@ -48,6 +52,11 @@ const {
 } = useHomeMessage();
 
 const envInfo = computed(() => (isProd() ? "生成环境" : "开发环境"));
+
+const { onlineUserCount, watchOnlineUsers } = useOnline();
+onMounted(() => {
+  watchOnlineUsers();
+});
 </script>
 
 <style scoped>
