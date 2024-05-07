@@ -7,6 +7,7 @@ export interface HomeMsg {
 
 interface Online {
   count: number;
+  list: string[];
 }
 
 export async function fetchHomeMsg() {
@@ -15,6 +16,10 @@ export async function fetchHomeMsg() {
 
 export async function fetchAddOnline(userId: string) {
   return await http.post("/home/addOnline", { userId });
+}
+
+export async function fetchDeleteOnline(userId: string) {
+  return await http.post("/home/deleteOnline", { userId });
 }
 
 export async function fetchOnlineUsers() {

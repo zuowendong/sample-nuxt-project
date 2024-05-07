@@ -5,10 +5,12 @@ import {
   type HomeMsg,
   fetchAddOnline,
   fetchOnlineUsers,
+  fetchDeleteOnline,
 } from "~/api/home";
 
 export function useHomeMessage() {
   const onlineUsersCount = ref(0);
+  const onlineUsers = ref<string[]>([]);
 
   const { homeMsg } = useHomeStore();
 
@@ -20,7 +22,8 @@ export function useHomeMessage() {
   function getHomeSse() {
     const eventSource = new EventSource("http://localhost:3001/home/sse");
     eventSource.onmessage = ({ data }) => {
-      console.log("message =>>>", data);
+      const onlineUsers = JSON.parse(data);
+      onlineUsersCount.value = onlineUsers.count;
     };
   }
 
@@ -28,23 +31,30 @@ export function useHomeMessage() {
     const mockUserId = `${Math.random()}`;
     await fetchAddOnline(mockUserId);
   }
+  async function deleteOnline(userId: string) {
+    await fetchDeleteOnline(userId);
+    await getOnlineUsers();
+  }
 
   async function getOnlineUsers() {
-    const { count } = await fetchOnlineUsers();
-    onlineUsersCount.value = count;
+    const res = await fetchOnlineUsers();
+    onlineUsersCount.value = res.count;
+    onlineUsers.value = res.list;
   }
 
   onMounted(async () => {
     await getAPIMsg();
-    // getHomeSse();
-
     await getOnlineUsers();
+    getHomeSse();
   });
 
   return {
     homeMsg,
     apiMsgs,
     addOnline,
+    deleteOnline,
+
     onlineUsersCount,
+    onlineUsers,
   };
 }

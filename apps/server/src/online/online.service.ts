@@ -16,8 +16,11 @@ export class OnlineService {
     await this.redis.srem(this.ONLINE_USER_KEY, userId);
   }
 
-  async getOnlineUserCount(): Promise<number> {
+  async getOnlineUserCount(): Promise<any> {
     const users = await this.redis.smembers(this.ONLINE_USER_KEY);
-    return users.length;
+    return {
+      list: users,
+      count: users.length,
+    };
   }
 }

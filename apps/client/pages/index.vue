@@ -6,6 +6,11 @@
       <button class="btn" @click="addOnline">添加在线人数</button>
       <span>在线人数：{{ onlineUsersCount }}</span>
 
+      <div v-for="(item, index) in onlineUsers" :key="index">
+        <span>userId: {{ item }}</span>
+        <button class="btn btn-ghost" @click="deleteOnline(item)">下线</button>
+      </div>
+
       <div>msg from store: {{ homeMsg }}</div>
       <div>
         <h1>msg from api:</h1>
@@ -33,7 +38,14 @@ import { computed } from "vue";
 import { useHomeMessage } from "~/composables/home";
 import { isProd } from "~/utils/env";
 
-const { homeMsg, apiMsgs, addOnline, onlineUsersCount } = useHomeMessage();
+const {
+  homeMsg,
+  apiMsgs,
+  addOnline,
+  onlineUsersCount,
+  onlineUsers,
+  deleteOnline,
+} = useHomeMessage();
 
 const envInfo = computed(() => (isProd() ? "生成环境" : "开发环境"));
 </script>

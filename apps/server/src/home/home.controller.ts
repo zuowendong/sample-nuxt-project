@@ -1,6 +1,9 @@
 import { Body, Controller, Get, Post, Sse } from '@nestjs/common';
 import { HomeService } from './home.service';
-import { Observable, interval, map } from 'rxjs';
+import { Observable } from 'rxjs';
+import * as EventEmitter from 'events';
+
+const myEmitter = new EventEmitter();
 
 @Controller('home')
 export class HomeController {
@@ -12,14 +15,30 @@ export class HomeController {
   }
 
   @Sse('sse')
-  sendServerMessage(): Observable<any> {
-    return interval(1000).pipe(map(() => ({ data: { hello: 'world' } })));
+  sendServerMessage(): Observable<MessageEvent> {
+    return new Observable<any>((observer) => {
+      myEmitter.on('send', (data: number) => {
+        observer.next({ data });
+      });
+    });
   }
 
   @Post('/addOnline')
   async addOnlineUser(@Body() dto: any) {
     const { userId } = dto;
-    return await this.homeService.addOnlineUser(userId);
+    const res = await this.homeService.addOnlineUser(userId);
+    const count = await this.homeService.getOnlineUsers();
+    myEmitter.emit('send', count);
+    return res;
+  }
+
+  @Post('/deleteOnline')
+  async removeOnlineUser(@Body() dto: any) {
+    const { userId } = dto;
+    const res = await this.homeService.removeOnlineUser(userId);
+    const count = await this.homeService.getOnlineUsers();
+    myEmitter.emit('send', count);
+    return res;
   }
 
   @Get('/online')

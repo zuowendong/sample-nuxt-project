@@ -17,9 +17,11 @@ export class HomeService {
   async addOnlineUser(userId: string) {
     await this.onlineService.addUser(userId);
   }
+  async removeOnlineUser(userId: string) {
+    await this.onlineService.removeUser(userId);
+  }
 
   async getOnlineUsers() {
-    const count = await this.onlineService.getOnlineUserCount();
-    return { count };
+    return await this.onlineService.getOnlineUserCount();
   }
 }
