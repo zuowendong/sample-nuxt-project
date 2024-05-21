@@ -82,14 +82,14 @@
           class="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0"
         >
           <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400" href="#"
-              >Features</a
-            >
+            <a class="md:p-4 py-2 block hover:text-purple-400" href="#">
+              <NuxtLink href="/mobile"> Mobile</NuxtLink>
+            </a>
           </li>
           <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400" href="#"
-              >Pricing</a
-            >
+            <a class="md:p-4 py-2 block hover:text-purple-400" href="#">
+              <NuxtLink href="/animation">animation</NuxtLink>
+            </a>
           </li>
           <li>
             <a class="md:p-4 py-2 block hover:text-purple-400" href="#"
@@ -109,16 +109,6 @@
         </ul>
       </div>
     </nav>
-
-    <div class="px-4">
-      <div
-        class="flex justify-center items-center bg-white mx-auto max-w-2xl rounded-lg my-16 p-16"
-      >
-        <h1 class="text-2xl font-medium">
-          <NuxtLink href="/mobile">Mobile terminal adaptation Demo</NuxtLink>
-        </h1>
-      </div>
-    </div>
   </header>
 </template>
 
