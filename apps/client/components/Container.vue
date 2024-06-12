@@ -14,7 +14,7 @@ function createObserver() {
   const observer = new IntersectionObserver(handleIntersect, {
     root: null,
     rootMargin: "0px",
-    threshold: buildThresholdList(),
+    threshold: [],
   });
   observer.observe(containerRef.value!);
 }
@@ -27,7 +27,12 @@ onMounted(() => {
 
 function handleIntersect(entries: IntersectionObserverEntry[]) {
   entries.forEach((entry) => {
-    console.log(entry.intersectionRatio, prevRatio.value);
+    console.log(
+      "intersectionRatio==>",
+      entry.intersectionRatio,
+      "prevRatio==>",
+      prevRatio.value
+    );
 
     if (entry.intersectionRatio > prevRatio.value) {
       (entry.target as HTMLElement).classList.add("container-an");
@@ -37,9 +42,5 @@ function handleIntersect(entries: IntersectionObserverEntry[]) {
 
     prevRatio.value = entry.intersectionRatio;
   });
-}
-
-function buildThresholdList() {
-  return [];
 }
 </script>

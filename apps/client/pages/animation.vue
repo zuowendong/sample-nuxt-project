@@ -22,7 +22,6 @@ import Container from "../components/Container.vue";
 <style scoped>
 .container-an {
   .container-child {
-    background-color: rgba(143, 19, 19, 0.747);
     animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   }
   .container-child1 {
@@ -41,10 +40,12 @@ import Container from "../components/Container.vue";
   0% {
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
+    background-color: rgba(143, 19, 19, 0);
   }
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
+    background-color: rgba(143, 19, 19, 0.7);
   }
 }
 
