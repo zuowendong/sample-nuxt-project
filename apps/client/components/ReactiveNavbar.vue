@@ -93,7 +93,7 @@
           </li>
           <li>
             <a class="md:p-4 py-2 block hover:text-purple-400" href="#">
-              <NuxtLink href="grapesDemo">grapes.js-demo</NuxtLink>
+              <NuxtLink href="/grapesDemo">grapes.js-demo</NuxtLink>
             </a>
           </li>
           <li>

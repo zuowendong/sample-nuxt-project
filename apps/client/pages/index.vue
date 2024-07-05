@@ -1,6 +1,8 @@
 <template>
   <div class="w-full">
-    <p>当前为：{{ envInfo }}</p>
+    <NuxtLink to="/scroll/aos">scroll demo for aos</NuxtLink>
+
+    <!-- <p>当前为：{{ envInfo }}</p>
 
     <div>
       <div class="divider">use websocket</div>
@@ -25,7 +27,7 @@
           <span>{{ item.name }}</span>
         </NuxtLink>
       </div>
-    </div>
+    </div> -->
 
     <!-- <div class="md:min-h-screen flex items-center relative py-[125px] overflow-hidden text-white bg-[#00263e]">
       <div class="w-screen absolute top-0 left-0 bottom-0 min-h-[220px] overflow-hidden transition-all">
@@ -39,26 +41,26 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useHomeMessage } from "~/composables/home";
-import { isProd } from "~/utils/env";
-import { useOnline } from "~/composables/socket";
+// import { computed } from "vue";
+// import { useHomeMessage } from "~/composables/home";
+// import { isProd } from "~/utils/env";
+// import { useOnline } from "~/composables/socket";
 
-const {
-  homeMsg,
-  apiMsgs,
-  addOnline,
-  onlineUsersCount,
-  onlineUsers,
-  deleteOnline,
-} = useHomeMessage();
+// const {
+//   homeMsg,
+//   apiMsgs,
+//   addOnline,
+//   onlineUsersCount,
+//   onlineUsers,
+//   deleteOnline,
+// } = useHomeMessage();
 
-const envInfo = computed(() => (isProd() ? "生成环境" : "开发环境"));
+// const envInfo = computed(() => (isProd() ? "生成环境" : "开发环境"));
 
-const { onlineUserCount, watchOnlineUsers, userId } = useOnline();
-onMounted(() => {
-  watchOnlineUsers();
-});
+// const { onlineUserCount, watchOnlineUsers, userId } = useOnline();
+// onMounted(() => {
+//   watchOnlineUsers();
+// });
 </script>
 
 <style scoped>
