@@ -3,30 +3,9 @@
     class="sticky top-0 bg-transparent z-[997] bg-white text-black flex items-center w-full h-[76px] glass bg-gradient-to-r from-transparent via-white/10 to-transparent shadow-md"
   >
     <div
-      class="w-full flex items-center px-[130px] font-semibold text-[16px] bg-transparent"
+      class="w-full h-full text-center text-[32px] font-medium flex items-center justify-center"
     >
-      <div class="w-[200px]">
-        <NuxtLink href="/">
-          <img
-            class="w-full"
-            src="https://seitzhydrogen.ch/theme/img/logo_seitz_pos.svg"
-          />
-        </NuxtLink>
-      </div>
-      <div class="flex-1">
-        <ul class="flex items-center justify-end h-full">
-          <li class="mr-[50px] cursor-pointer hover:text-[#7ae3a6]">
-            <NuxtLink href="/product/more">产品中心</NuxtLink>
-          </li>
-          <li class="mr-[50px] cursor-pointer hover:text-[#7ae3a6]">
-            西兹动态
-          </li>
-          <li class="mr-[50px] cursor-pointer hover:text-[#7ae3a6]">
-            关于西兹
-          </li>
-          <li class="cursor-pointer hover:text-[#7ae3a6]">联系我们</li>
-        </ul>
-      </div>
+      This is the navbar
     </div>
   </header>
 </template>
