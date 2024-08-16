@@ -60,11 +60,16 @@ onMounted(() => {
   page3Dom?.addEventListener("wheel", (event) => {
     if (event.deltaY > 0) {
       console.log("dom3向下滚动");
+      console.log(1111111, page3Dom.getBoundingClientRect());
     } else if (event.deltaY < 0) {
-      console.log("dom3向上滚动");
+      console.log("dom3向上滚动", event);
 
-      mainDom?.classList.remove("active3");
-      mainDom?.classList.add("active2");
+      console.log(2222222, page3Dom.getBoundingClientRect());
+
+      if (page3Dom.getBoundingClientRect().top == 76) {
+        mainDom?.classList.remove("active3");
+        mainDom?.classList.add("active2");
+      }
     }
   });
 });
