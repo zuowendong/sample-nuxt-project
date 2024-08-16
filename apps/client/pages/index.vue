@@ -1,92 +1,108 @@
 <template>
-  <div class="w-full">
-    <NuxtLink to="/scroll/aos">scroll demo for aos</NuxtLink>
-
-    <!-- <p>当前为：{{ envInfo }}</p>
-
-    <div>
-      <div class="divider">use websocket</div>
-      <div>在线人数：{{ onlineUserCount }}</div>
-      <span>userId: {{ userId }}</span>
-      <button class="btn btn-ghost" @click="deleteOnline(userId)">下线</button>
-
-      <div class="divider">use sse</div>
-      <button class="btn" @click="addOnline">添加在线人数</button>
-      <span>在线人数：{{ onlineUsersCount }}</span>
-
-      <div v-for="(item, index) in onlineUsers" :key="index">
-        <span>userId: {{ item }}</span>
-        <button class="btn btn-ghost" @click="deleteOnline(item)">下线</button>
+  <section class="block">
+    <div id="main" class="home-pc active1">
+      <div class="page page1" id="page1">
+        <div class="index-add1 bg-red-300"></div>
       </div>
-      <div class="divider">use store</div>
-      <div>msg from store: {{ homeMsg }}</div>
-      <div class="divider">use nest api</div>
-
-      <div v-for="item in apiMsgs" :index="item.xid">
-        <NuxtLink :href="`/message/${item.xid}`">
-          <span>{{ item.name }}</span>
-        </NuxtLink>
+      <div class="page page2" id="page2">
+        <div class="index-add1 bg-slate-600"></div>
       </div>
-    </div> -->
-
-    <!-- <div class="md:min-h-screen flex items-center relative py-[125px] overflow-hidden text-white bg-[#00263e]">
-      <div class="w-screen absolute top-0 left-0 bottom-0 min-h-[220px] overflow-hidden transition-all">
-        <div class="w-full h-full absolute top-0 left-0 ">
-          <img src="https://ik.imagekit.io/seitz/media/seitz-h2_keyvisual.jpg?tr=ar-16-9,w-3000,fo-center" alt="Flowers"
-            style="width:auto;">
+      <div class="page page3" id="page3">
+        <div class="h-[3379.69px] bg-orange-300">
+          <div v-for="item in 100" :key="item" class="text-black">
+            {{ item }}
+          </div>
         </div>
       </div>
-    </div> -->
-  </div>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-// import { computed } from "vue";
-// import { useHomeMessage } from "~/composables/home";
-// import { isProd } from "~/utils/env";
-// import { useOnline } from "~/composables/socket";
+onMounted(() => {
+  const mainDom = document.getElementById("main");
+  const page1Dom = document.getElementById("page1");
+  const page2Dom = document.getElementById("page2");
+  const page3Dom = document.getElementById("page3");
 
-// const {
-//   homeMsg,
-//   apiMsgs,
-//   addOnline,
-//   onlineUsersCount,
-//   onlineUsers,
-//   deleteOnline,
-// } = useHomeMessage();
+  page1Dom?.addEventListener("wheel", (event) => {
+    event.preventDefault();
 
-// const envInfo = computed(() => (isProd() ? "生成环境" : "开发环境"));
+    if (event.deltaY > 0) {
+      console.log("dom1向下滚动");
 
-// const { onlineUserCount, watchOnlineUsers, userId } = useOnline();
-// onMounted(() => {
-//   watchOnlineUsers();
-// });
+      mainDom?.classList.remove("active1");
+      mainDom?.classList.add("active2");
+    } else if (event.deltaY < 0) {
+      console.log("dom1向上滚动");
+
+      // mainDom?.classList.remove("active2");
+      // mainDom?.classList.add("active1");
+    }
+  });
+
+  page2Dom?.addEventListener("wheel", (event) => {
+    event.preventDefault();
+
+    if (event.deltaY > 0) {
+      console.log("dom2向下滚动");
+
+      mainDom?.classList.remove("active2");
+      mainDom?.classList.add("active3");
+    } else if (event.deltaY < 0) {
+      console.log("dom2向上滚动");
+
+      mainDom?.classList.remove("active2");
+      mainDom?.classList.add("active1");
+    }
+  });
+
+  page3Dom?.addEventListener("wheel", (event) => {
+    if (event.deltaY > 0) {
+      console.log("dom3向下滚动");
+    } else if (event.deltaY < 0) {
+      console.log("dom3向上滚动");
+
+      mainDom?.classList.remove("active3");
+      mainDom?.classList.add("active2");
+    }
+  });
+});
 </script>
 
 <style scoped>
-.mask::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 768px;
-  height: 768px;
-  right: 0px;
-  bottom: 0px;
-  background-color: #fff;
-  clip-path: polygon(100% 40%, 100% 100%, 0% 100%);
-  z-index: 2;
-  transform: translate(1px, 1px);
+.home-pc.active1 .page1 {
+  margin-top: 0;
+}
+.home-pc .page1 {
+  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
 }
 
-.mask::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-  background-color: #00263e;
-  opacity: 0.7;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+.home-pc .page2 {
+  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
+  overflow: hidden;
+}
+
+.home-pc.active2 .page1 {
+  margin-top: calc(-100vh + 76px);
+}
+
+.home-pc.active2 .page2 {
+  max-height: 100vh;
+}
+
+.home-pc.active3 .page1 {
+  margin-top: calc(-100vh + 76px);
+}
+
+.home-pc.active3 .page2 {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.index-add1 {
+  position: relative;
+  height: calc(100vh - 76px);
+  overflow: hidden;
 }
 </style>

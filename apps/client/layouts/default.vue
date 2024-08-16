@@ -1,11 +1,14 @@
 <template>
   <div ref="mainDom" class="main">
     <!-- <Navbar :style="bannerStyle"></Navbar> -->
-    <ReactiveNavbar></ReactiveNavbar>
+    <!-- <ReactiveNavbar></ReactiveNavbar> -->
+
+    <Navbar></Navbar>
+
     <div class="content">
       <slot></slot>
     </div>
-    <!-- <Footer></Footer> -->
+    <Footer></Footer>
   </div>
 </template>
 
