@@ -34,6 +34,8 @@
             SECTION 4
           </div>
         </div>
+
+        <!-- <Footer></Footer> -->
       </div>
     </div>
   </section>
@@ -124,10 +126,15 @@ onMounted(() => {
     if (event.deltaY > 0) {
       console.log("dom4向下滚动");
     } else if (event.deltaY < 0) {
-      console.log("dom4向上滚动", event);
+      console.log("dom4向上滚动", page4Dom.getBoundingClientRect().top);
 
       mainDom?.classList.remove("active4");
       mainDom?.classList.add("active3");
+
+      // if (page4Dom.getBoundingClientRect().top <= 76) {
+      //   mainDom?.classList.remove("active4");
+      //   mainDom?.classList.add("active3");
+      // }
     }
   });
 });
@@ -210,6 +217,8 @@ onMounted(() => {
   max-height: 100vh;
 }
 .home-pc.active4 .page4 {
+  /* max-height: calc(100vh + 500px); */
+
   max-height: 100vh;
 }
 
