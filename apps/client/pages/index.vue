@@ -17,15 +17,24 @@
           </div>
         </div>
       </div>
-      <!-- <div class="page page3" id="page3">
-        <div class="index-add1 bg-red-300">
+      <div class="page page3" id="page3">
+        <div class="index-add1 bg-orange-400">
           <div
-            class="w-full h-full flex items-center justify-center text-[50px]"
+            class="w-full h-full flex items-center justify-center text-[50px] text-white"
           >
             SECTION 3
           </div>
         </div>
-      </div> -->
+      </div>
+      <div class="page page4" id="page4">
+        <div class="index-add1 bg-red-500">
+          <div
+            class="w-full h-full flex items-center justify-center text-[50px] text-white"
+          >
+            SECTION 4
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -35,27 +44,28 @@ onMounted(() => {
   const mainDom = document.getElementById("main") as HTMLElement;
   const page1Dom = document.getElementById("page1") as HTMLElement;
   const page2Dom = document.getElementById("page2") as HTMLElement;
-  // const page3Dom = document.getElementById("page3");
+  const page3Dom = document.getElementById("page3");
+  const page4Dom = document.getElementById("page4");
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        console.log("元素已进入视窗");
+  // const observer = new IntersectionObserver((entries) => {
+  //   entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  //       console.log("元素已进入视窗");
 
-        page1Dom?.addEventListener("wheel", (event) => {
-          event.preventDefault();
+  //       page1Dom?.addEventListener("wheel", (event) => {
+  //         event.preventDefault();
 
-          mainDom?.classList.remove("active1");
-          mainDom?.classList.add("active2");
-        });
+  //         mainDom?.classList.remove("active1");
+  //         mainDom?.classList.add("active2");
+  //       });
 
-        // mainDom?.classList.remove("active1");
-        // mainDom?.classList.add("active2");
-      }
-    });
-  });
+  //       // mainDom?.classList.remove("active1");
+  //       // mainDom?.classList.add("active2");
+  //     }
+  //   });
+  // });
 
-  observer.observe(page2Dom);
+  // observer.observe(page2Dom);
 
   // page1Dom?.addEventListener("wheel", (event) => {
   //   event.preventDefault();
@@ -64,50 +74,62 @@ onMounted(() => {
   //   mainDom?.classList.add("active2");
   // });
 
-  // page1Dom?.addEventListener("wheel", (event) => {
-  //   if (event.deltaY > 0) {
-  //     console.log("dom1向下滚动");
-  //     console.log(11111111, page1Dom.getBoundingClientRect().bottom);
-  //     console.log(22222222, window.innerHeight);
-  //     const a = page1Dom.getBoundingClientRect().bottom;
-  //     const b = window.innerHeight;
-  //     console.log(333333, Math.abs(a - b));
-  //     if (Math.abs(a - b) < 50) {
-  //       event.preventDefault();
-  //       mainDom?.classList.remove("active1");
-  //       mainDom?.classList.add("active2");
-  //     }
-  //   } else if (event.deltaY < 0) {
-  //     console.log("dom1向上滚动");
-  //     // mainDom?.classList.remove("active2");
-  //     // mainDom?.classList.add("active1");
-  //   }
-  // });
-  page2Dom?.addEventListener("wheel", (event) => {
-    event.preventDefault();
+  page1Dom?.addEventListener("wheel", (event) => {
     if (event.deltaY > 0) {
-      console.log("dom2向下滚动");
-      // mainDom?.classList.remove("active2");
-      // mainDom?.classList.add("active3");
+      console.log("dom1向下滚动");
+      console.log(11111111, page1Dom.getBoundingClientRect().bottom);
+      console.log(22222222, window.innerHeight);
+      const a = page1Dom.getBoundingClientRect().bottom;
+      const b = window.innerHeight;
+      console.log(333333, Math.abs(a - b));
+      if (Math.abs(a - b) < 1) {
+        mainDom?.classList.remove("active1");
+        mainDom?.classList.add("active2");
+      }
     } else if (event.deltaY < 0) {
-      console.log("dom2向上滚动");
+      console.log("dom1向上滚动");
       // mainDom?.classList.remove("active2");
       // mainDom?.classList.add("active1");
     }
   });
-  // // page3Dom?.addEventListener("wheel", (event) => {
-  // //   if (event.deltaY > 0) {
-  // //     console.log("dom3向下滚动");
-  // //     console.log(1111111, page3Dom.getBoundingClientRect());
-  // //   } else if (event.deltaY < 0) {
-  // //     console.log("dom3向上滚动", event);
-  // //     console.log(2222222, page3Dom.getBoundingClientRect());
-  // //     if (page3Dom.getBoundingClientRect().top == 76) {
-  // //       mainDom?.classList.remove("active3");
-  // //       mainDom?.classList.add("active2");
-  // //     }
-  // //   }
-  // // });
+  page2Dom?.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    if (event.deltaY > 0) {
+      console.log("dom2向下滚动");
+      mainDom?.classList.remove("active2");
+      mainDom?.classList.add("active3");
+    } else if (event.deltaY < 0) {
+      console.log("dom2向上滚动");
+      mainDom?.classList.remove("active2");
+      mainDom?.classList.add("active1");
+    }
+  });
+  page3Dom?.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    if (event.deltaY > 0) {
+      console.log("dom3向下滚动");
+      console.log(1111111, page3Dom.getBoundingClientRect());
+      mainDom?.classList.remove("active3");
+      mainDom?.classList.add("active4");
+    } else if (event.deltaY < 0) {
+      console.log("dom3向上滚动", event);
+      console.log(2222222, page3Dom.getBoundingClientRect());
+
+      mainDom?.classList.remove("active3");
+      mainDom?.classList.add("active2");
+    }
+  });
+  page4Dom?.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    if (event.deltaY > 0) {
+      console.log("dom4向下滚动");
+    } else if (event.deltaY < 0) {
+      console.log("dom4向上滚动", event);
+
+      mainDom?.classList.remove("active4");
+      mainDom?.classList.add("active3");
+    }
+  });
 });
 </script>
 
@@ -120,26 +142,75 @@ onMounted(() => {
   transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
   overflow: hidden;
 }
+.home-pc .page3 {
+  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
+  overflow: hidden;
+}
+.home-pc .page4 {
+  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
+  overflow: hidden;
+}
 
 .home-pc.active1 .page1 {
   margin-top: 0;
+}
+.home-pc.active1 .page2 {
+  max-height: 0;
+  overflow: hidden;
+}
+.home-pc.active1 .page3 {
+  max-height: 0;
+  overflow: hidden;
+}
+.home-pc.active1 .page4 {
+  max-height: 0;
+  overflow: hidden;
 }
 
 .home-pc.active2 .page1 {
   margin-top: calc(-100vh + 76px);
 }
-
 .home-pc.active2 .page2 {
+  margin-top: 0;
   max-height: 100vh;
+}
+.home-pc.active2 .page3 {
+  max-height: 0;
+  overflow: hidden;
+}
+.home-pc.active2 .page4 {
+  max-height: 0;
+  overflow: hidden;
 }
 
 .home-pc.active3 .page1 {
   margin-top: calc(-100vh + 76px);
 }
-
 .home-pc.active3 .page2 {
+  margin-top: calc(-100vh + 76px);
+  max-height: 100vh;
+}
+.home-pc.active3 .page3 {
+  max-height: 100vh;
+}
+.home-pc.active3 .page4 {
   max-height: 0;
   overflow: hidden;
+}
+
+.home-pc.active4 .page1 {
+  margin-top: calc(-100vh + 76px);
+}
+.home-pc.active4 .page2 {
+  margin-top: calc(-100vh + 76px);
+  max-height: 100vh;
+}
+.home-pc.active4 .page3 {
+  margin-top: calc(-100vh + 76px);
+  max-height: 100vh;
+}
+.home-pc.active4 .page4 {
+  max-height: 100vh;
 }
 
 .index-add1 {

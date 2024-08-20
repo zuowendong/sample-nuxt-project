@@ -8,7 +8,7 @@
     <div class="content">
       <slot></slot>
     </div>
-    <Footer></Footer>
+    <!-- <Footer></Footer> -->
   </div>
 </template>
 
