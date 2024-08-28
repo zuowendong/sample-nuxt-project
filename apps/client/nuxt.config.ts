@@ -3,8 +3,10 @@ export default defineNuxtConfig({
   devtools: {
     enabled: false,
   },
-  css: ["~/assets/css/globals.css"],
+  css: ["~/assets/css/globals.css", "aos/dist/aos.css"],
   modules: ["@nuxtjs/tailwindcss"],
+
+  plugins: ["~/plugins/aos.client.ts"],
   app: {
     baseURL: "",
     head: {

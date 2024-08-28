@@ -1,51 +1,14 @@
 <template>
-  <div ref="mainDom" class="main">
-    <!-- <Navbar :style="bannerStyle"></Navbar> -->
-    <!-- <ReactiveNavbar></ReactiveNavbar> -->
-
-    <Navbar></Navbar>
-
-    <div class="content">
-      <slot></slot>
+  <div class="h-full w-full">
+    <div class="flex h-fit min-h-screen flex-col items-center relative">
+      <Navbar />
+      <div class="flex w-full flex-1">
+        <div class="mx-auto flex w-full flex-1">
+          <slot></slot>
+        </div>
+      </div>
     </div>
-    <!-- <Footer></Footer> -->
   </div>
 </template>
 
-<script setup lang="ts">
-import { onMounted, ref } from "vue";
-
-const mainDom = ref<any>(null);
-const bannerStyle = ref({});
-function handleScroll() {
-  let scrollTop = mainDom.value?.scrollTop;
-  if (scrollTop > 180) {
-    bannerStyle.value = {
-      backgroundColor: "#fff",
-      color: "#3d99d4",
-    };
-  } else {
-    bannerStyle.value = {
-      backgroundColor: "transparent",
-    };
-  }
-}
-
-onMounted(() => {
-  document.addEventListener("scroll", handleScroll, true);
-});
-</script>
-
-<style scoped>
-.main {
-  width: 100%;
-  height: 100vh;
-  background-color: #fff;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.content {
-  background-color: #fff;
-}
-</style>
+<script setup lang="ts"></script>

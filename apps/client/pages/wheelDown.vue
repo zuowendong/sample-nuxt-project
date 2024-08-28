@@ -39,7 +39,6 @@
           </div>
         </div>
       </div>
-
       <div class="page page5" id="page5">
         <Footer></Footer>
       </div>
@@ -49,8 +48,6 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-
-function wheelEvent(dom) {}
 
 onMounted(() => {
   const mainDom = document.getElementById("main") as HTMLElement;
@@ -65,7 +62,10 @@ onMounted(() => {
       console.log("dom1向下滚动");
       const a = page1Dom.getBoundingClientRect().bottom;
       const b = window.innerHeight;
-      if (Math.abs(a - b) < 1) {
+
+      console.log(1111111111, a, b);
+
+      if (a < b) {
         mainDom?.classList.add("active2");
         mainDom?.classList.remove("active1");
       }
@@ -128,132 +128,15 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.home-pc .page1 {
+.home-pc .page {
   transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
-  position: relative;
-  z-index: 1;
+}
+.active1 {
+  transform: translateY(0);
 }
 
-.home-pc .page2 {
-  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
-  position: relative;
-  overflow: hidden;
-  z-index: 2;
-}
-.home-pc .page3 {
-  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
-  position: relative;
-  overflow: hidden;
-  z-index: 3;
-}
-.home-pc .page4 {
-  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
-  position: relative;
-  overflow: hidden;
-  z-index: 4;
-}
-.home-pc .page5 {
-  transition: all 1s cubic-bezier(0.825, 0, 0.5, 1);
-  position: relative;
-  overflow: hidden;
-  z-index: 5;
-}
-
-.home-pc.active1 .page1 {
-  margin-top: 0;
-}
-.home-pc.active1 .page2 {
-  max-height: 0;
-  overflow: hidden;
-}
-.home-pc.active1 .page3 {
-  max-height: 0;
-  overflow: hidden;
-}
-.home-pc.active1 .page4 {
-  max-height: 0;
-  overflow: hidden;
-}
-.home-pc.active1 .page5 {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.home-pc.active2 .page1 {
-  margin-top: calc(-100vh + 76px);
-}
-.home-pc.active2 .page2 {
-  margin-top: 0;
-  max-height: 100vh;
-}
-.home-pc.active2 .page3 {
-  max-height: 0;
-  overflow: hidden;
-}
-.home-pc.active2 .page4 {
-  max-height: 0;
-  overflow: hidden;
-}
-.home-pc.active2 .page5 {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.home-pc.active3 .page1 {
-  margin-top: calc(-100vh + 76px);
-}
-.home-pc.active3 .page2 {
-  margin-top: calc(-100vh + 76px);
-  max-height: 100vh;
-}
-.home-pc.active3 .page3 {
-  max-height: 100vh;
-}
-.home-pc.active3 .page4 {
-  max-height: 0;
-  overflow: hidden;
-}
-.home-pc.active3 .page5 {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.home-pc.active4 .page1 {
-  margin-top: calc(-100vh + 76px);
-}
-.home-pc.active4 .page2 {
-  margin-top: calc(-100vh + 76px);
-  max-height: 100vh;
-}
-.home-pc.active4 .page3 {
-  margin-top: calc(-100vh + 76px);
-  max-height: 100vh;
-}
-.home-pc.active4 .page4 {
-  max-height: 100vh;
-}
-.home-pc.active4 .page5 {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.home-pc.active5 .page1 {
-  margin-top: calc(-100vh + 76px);
-}
-.home-pc.active5 .page2 {
-  margin-top: calc(-100vh + 76px);
-  max-height: 100vh;
-}
-.home-pc.active5 .page3 {
-  margin-top: calc(-100vh + 76px);
-  max-height: 100vh;
-}
-.home-pc.active5 .page4 {
-  margin-top: calc(-644px);
-  max-height: 100vh;
-}
-.home-pc.active4 .page5 {
-  max-height: 644px;
+.active2 {
+  transform: translateY(calc(-100vh + 76px));
 }
 
 .index-add1 {
