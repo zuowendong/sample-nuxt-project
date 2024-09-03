@@ -1,8 +1,8 @@
 <template>
-  <div ref="homePageRef" class="w-full relative main page1">
+  <div ref="homePageRef" class="w-full relative touch-none main page1">
     <section ref="section1Ref" class="w-full h-[calc(100vh_-_76px)]">
       <div
-        class="w-full h-full flex flex-col justify-between bg-slate-300 text-white"
+        class="w-full h-full flex flex-col justify-between bg-slate-300 text-white text-2xl font-medium"
       >
         <span>SECTION1</span>
         <span>SECTION1</span>
@@ -10,7 +10,7 @@
     </section>
     <section ref="section2Ref" class="w-full h-[calc(100vh_-_76px)]">
       <div
-        class="w-full h-full flex flex-col justify-between bg-slate-700 text-white"
+        class="w-full h-full flex flex-col justify-between bg-slate-700 text-white text-2xl font-medium"
       >
         <span>SECTION2</span>
         <span>SECTION2</span>
@@ -18,7 +18,7 @@
     </section>
     <section ref="section3Ref" class="w-full h-[calc(100vh_-_76px)]">
       <div
-        class="w-full h-full flex flex-col justify-between bg-slate-300 text-white"
+        class="w-full h-full flex flex-col justify-between bg-slate-300 text-white text-2xl font-medium"
       >
         <span>SECTION3</span>
         <span>SECTION3</span>
@@ -26,7 +26,7 @@
     </section>
     <section ref="section4Ref" class="w-full h-[calc(100vh_-_76px)]">
       <div
-        class="w-full h-full flex flex-col justify-between bg-slate-700 text-white"
+        class="w-full h-full flex flex-col justify-between bg-slate-700 text-white text-2xl font-medium"
       >
         <span>SECTION4</span>
         <span>SECTION4</span>
@@ -34,7 +34,7 @@
     </section>
     <section ref="section5Ref" class="w-full h-[calc(100vh_-_76px)]">
       <div
-        class="w-full h-full flex flex-col justify-between bg-slate-300 text-white"
+        class="w-full h-full flex flex-col justify-between bg-slate-300 text-white text-2xl font-medium"
       >
         <span>SECTION5</span>
         <span>SECTION5</span>
@@ -42,7 +42,7 @@
     </section>
     <section ref="footerRef" class="w-full h-[635px]">
       <footer
-        class="w-full h-full bg-lime-600 flex flex-col justify-between text-white"
+        class="w-full h-full bg-lime-600 flex flex-col justify-between text-white text-2xl font-medium"
       >
         <span>footer</span>
         <span>footer</span>
@@ -54,77 +54,113 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-const homePageRef = ref();
+const homePageRef = ref<HTMLElement | null>(null);
 
-const section1Ref = ref();
-const section2Ref = ref();
-const section3Ref = ref();
-const section4Ref = ref();
-const section5Ref = ref();
-const footerRef = ref();
+const section1Ref = ref<HTMLElement | null>(null);
+const section2Ref = ref<HTMLElement | null>(null);
+const section3Ref = ref<HTMLElement | null>(null);
+const section4Ref = ref<HTMLElement | null>(null);
+const section5Ref = ref<HTMLElement | null>(null);
+const footerRef = ref<HTMLElement | null>(null);
+
+function section1Wheel(deltaY: number) {
+  if (deltaY > 0) {
+    homePageRef.value?.classList.add("page2");
+  }
+  homePageRef.value?.classList.remove("page1");
+}
+
+function section2Wheel(deltaY: number) {
+  if (deltaY < 0) {
+    homePageRef.value?.classList.add("page1");
+  } else if (deltaY > 0) {
+    homePageRef.value?.classList.add("page3");
+  }
+  homePageRef.value?.classList.remove("page2");
+}
+
+function section3Wheel(deltaY: number) {
+  if (deltaY < 0) {
+    homePageRef.value?.classList.add("page2");
+  } else if (deltaY > 0) {
+    homePageRef.value?.classList.add("page4");
+  }
+  homePageRef.value?.classList.remove("page3");
+}
+
+function section4Wheel(deltaY: number) {
+  if (deltaY < 0) {
+    homePageRef.value?.classList.add("page3");
+  } else if (deltaY > 0) {
+    homePageRef.value?.classList.add("page5");
+  }
+  homePageRef.value?.classList.remove("page4");
+}
+
+function footerWheel(deltaY: number) {
+  if (deltaY < 0) {
+    homePageRef.value?.classList.add("page5");
+    homePageRef.value?.classList.remove("page6");
+  }
+}
+
+function sectionWheel(dom: HTMLElement | null, callback: Function) {
+  if (dom) {
+    dom.addEventListener("wheel", (event: WheelEvent) => {
+      event.preventDefault();
+      callback(event.deltaY);
+    });
+  }
+}
+function sectionTouch(dom: HTMLElement | null, callback: Function) {
+  let touchStartNum = 0;
+  let touchEndNum = 0;
+  dom?.addEventListener("touchstart", (event: TouchEvent) => {
+    event.preventDefault();
+    touchStartNum = event.touches[0].clientY;
+  });
+  dom?.addEventListener("touchmove", (event: TouchEvent) => {
+    event.preventDefault();
+    touchEndNum = event.touches[0].clientY;
+    callback(touchStartNum - touchEndNum);
+
+    touchStartNum = 0;
+    touchEndNum = 0;
+  });
+}
 
 onMounted(() => {
   // 禁用 scrollRestoration 功能  该功能旨在在页面刷新或导航后恢复之前的滚动位置
   window.history.scrollRestoration = "manual";
 
-  section1Ref.value.addEventListener("wheel", (event) => {
-    event.preventDefault();
-    if (event.deltaY < 0) {
-    } else if (event.deltaY > 0) {
-      homePageRef.value.classList.add("page2");
-    }
-    homePageRef.value.classList.remove("page1");
-  });
+  sectionWheel(section1Ref.value, section1Wheel);
+  sectionTouch(section1Ref.value, section1Wheel);
 
-  section2Ref.value.addEventListener("wheel", (event) => {
-    event.preventDefault();
-    if (event.deltaY < 0) {
-      homePageRef.value.classList.add("page1");
-    } else if (event.deltaY > 0) {
-      homePageRef.value.classList.add("page3");
-    }
-    homePageRef.value.classList.remove("page2");
-  });
+  sectionWheel(section2Ref.value, section2Wheel);
+  sectionTouch(section2Ref.value, section2Wheel);
 
-  section3Ref.value.addEventListener("wheel", (event) => {
-    event.preventDefault();
-    if (event.deltaY < 0) {
-      homePageRef.value.classList.add("page2");
-    } else if (event.deltaY > 0) {
-      homePageRef.value.classList.add("page4");
-    }
-    homePageRef.value.classList.remove("page3");
-  });
+  sectionWheel(section3Ref.value, section3Wheel);
+  sectionTouch(section3Ref.value, section3Wheel);
 
-  section4Ref.value.addEventListener("wheel", (event) => {
-    event.preventDefault();
-    if (event.deltaY < 0) {
-      homePageRef.value.classList.add("page3");
-    } else if (event.deltaY > 0) {
-      homePageRef.value.classList.add("page5");
-    }
-    homePageRef.value.classList.remove("page4");
-  });
+  sectionWheel(section4Ref.value, section4Wheel);
+  sectionTouch(section4Ref.value, section4Wheel);
 
-  section5Ref.value.addEventListener("wheel", wheelEvent);
+  section5Ref.value?.addEventListener("wheel", wheelEvent);
+  sectionTouch(section5Ref.value, section5Wheel);
 
-  footerRef.value.addEventListener("wheel", (event) => {
-    event.preventDefault();
-    if (event.deltaY < 0) {
-      homePageRef.value.classList.add("page5");
-      homePageRef.value.classList.remove("page6");
-    } else if (event.deltaY > 0) {
-    }
-  });
+  sectionWheel(footerRef.value, footerWheel);
+  sectionTouch(footerRef.value, footerWheel);
 });
 
 const timer = ref();
-function wheelEvent(event) {
+function wheelEvent(event: WheelEvent) {
   event.preventDefault();
   if (timer.value) clearTimeout(timer.value);
   timer.value = setTimeout(function () {
     var delta = 0;
+    // @ts-ignore
     if (event.wheelDelta) {
+      // @ts-ignore
       delta = -(event.wheelDelta / 120);
     }
     if (delta) {
@@ -133,19 +169,19 @@ function wheelEvent(event) {
   }, 250);
 }
 
-function section5Wheel(deltaY) {
+function section5Wheel(deltaY: number) {
   if (deltaY < 0) {
-    const list = Array.from(homePageRef.value.classList);
+    const list = Array.from(homePageRef.value?.classList || []);
     if (list.includes("page6")) {
-      homePageRef.value.classList.add("page5");
-      homePageRef.value.classList.remove("page6");
+      homePageRef.value?.classList.add("page5");
+      homePageRef.value?.classList.remove("page6");
     } else {
-      homePageRef.value.classList.add("page4");
-      homePageRef.value.classList.remove("page5");
+      homePageRef.value?.classList.add("page4");
+      homePageRef.value?.classList.remove("page5");
     }
   } else if (deltaY > 0) {
-    homePageRef.value.classList.add("page6");
-    homePageRef.value.classList.remove("page5");
+    homePageRef.value?.classList.add("page6");
+    homePageRef.value?.classList.remove("page5");
   }
 }
 </script>
